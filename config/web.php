@@ -7,21 +7,62 @@ $config = [
     'components' => [
         'request' => [
             'cookieValidationKey' => 'MrQsU247npsU3Q5bRP8BNff3_hESH80H',
+             'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
+        'response' => [
+			'format'         => yii\web\Response::FORMAT_JSON,
+			'charset'        => 'UTF-8',
+            // @todo: move this to a separate event handler class (?)
+            'on beforeSend'  => function ($event) {
+                $response = $event->sender;
+
+                // Because Yii2 CORS doesn't handle this 
+                // @todo file a bug for this
+                $response->headers['Access-Control-Allow-Headers'] = 'x-auth-token, Content-Type';
+                $response->headers['Access-Control-Request-Method'] = 'GET, POST, PUT, OPTIONS, HEAD';
+
+                if (\Yii::$app->request->getIsOptions())
+                {
+                    $response->statusCode = 200;
+                    $response->data = null;
+                }
+                else
+                {
+                    if ($response->statusCode != 200)
+                        $response->headers['Access-Control-Allow-Origin'] = '*';
+                }
+                
+                if ($response->data !== null)
+                {
+                    $return = ($response->statusCode == 200 ? $response->data : $response->data['message']);
+
+                    $response->data = [
+                        'success'   =>  ($response->statusCode === 200),
+                        'status'    => $response->statusCode,
+                        'response'  => $return
+                    ];
+                }
+            }
+		],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
-        ],
-        'errorHandler' => [
-            'errorAction' => 'site/error',
+            'enableSession' => false,
+            'loginUrl'      => null
         ],
         'urlManager' => [
             'class' => 'yii\web\UrlManager',
-            'showScriptName' => false,
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => true,
+            'showScriptName' => false,
+            'rules' => [
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
+                ['class' => 'yii\web\UrlRule', 'pattern' => 'site/<action>', 'route' => 'site/<action>']
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
