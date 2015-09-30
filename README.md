@@ -1,7 +1,7 @@
-## Mastering Yii Chapter 4 Source Code
+## Mastering Yii Chapter 10 Source Code
 
-The following source code is the project for Chapter 9 of Mastering Yii
-ISBN-CH: 978-1-78588-242-5_09
+The following source code is the project for Chapter 10 of Mastering Yii
+ISBN-CH: 978-1-78588-242-5_10
 
 ### Template
 The template is stored in the ```template``` tag. You should start there at the beginning of the chapter
@@ -27,3 +27,15 @@ The template is stored in the ```template``` tag. You should start there at the 
   - assets
 
 5. Point your web browser to your application and you should see the application fire up.
+
+6. Install composer dependnecies
+
+```
+composer install
+```
+
+7. Run tests by running:
+
+````
+./vendor/bin/codecept run
+```
