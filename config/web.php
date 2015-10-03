@@ -38,13 +38,4 @@ $config = [
     'params' => require(__DIR__ . '/params.php'),
 ];
 
-if (APPLICATION_ENV == "dev")
-{
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-        'allowedIPs' => ['*']
-    ];
-}
-
 return $config;

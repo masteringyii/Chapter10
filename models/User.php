@@ -20,7 +20,7 @@ use yii\behaviors\TimestampBehavior;
  * @property Post[] $posts
  * @property Role $role
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
 	/**
 	 * Allow yii to handle population of created_at and updated_at time
@@ -106,5 +106,54 @@ class User extends \yii\db\ActiveRecord
     public function getRole()
     {
         return $this->hasOne(Role::className(), ['id' => 'role_id']);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id)
+    { 
+        return static::findOne($id);
+    }
+
+    /** 
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type=null)
+    {
+        return static::findOne(['access_token' => $token]);
+    }
+
+    /**
+     * @return string current user auth key
+     */
+    public function getAuthKey() {}
+
+    /**
+     * @param string $authKey
+     * @return boolean if auth key is valid for current user
+     */
+    public function validateAuthKey($authKey)
+    {
+        return true;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Validates password
+     *
+     * @param  string  $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password)
+    {
+        return password_verify($password, $this->password);
     }
 }
