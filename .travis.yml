@@ -1,5 +1,8 @@
 sudo: false
 
+env:
+  - "APPLICATION_ENV=dev"
+  
 language: php
 
 cache:
