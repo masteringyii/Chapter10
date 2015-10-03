@@ -1,7 +1,9 @@
 ## Mastering Yii Chapter 6 Source Code
 
-The following source code is the project for Chapter 6 of Mastering Yii
-ISBN-CH: 978-1-78588-242-5_05
+[![Build Status](https://travis-ci.org/masteringyii/chapter10_2.svg?branch=master)](https://travis-ci.org/masteringyii/chapter10_2)
+
+The following source code is the project for Chapter 10 of Mastering Yii
+ISBN-CH: 978-1-78588-242-5_10
 
 ### Requirements
 
@@ -23,4 +25,24 @@ ISBN-CH: 978-1-78588-242-5_05
   - runtime
   - assets
 
-5. Point your web browser to your application and you should see the application fire up.
+5. Point your web browser to your application and you should see the application fire up.\
+
+6. Install dependencies
+
+```
+composer selfupdate
+composer global require "fxp/composer-asset-plugin:~1.0"
+composer install -o -n
+```
+
+7. Migrate the database
+
+```
+./yii migrate/up --interactive=0
+```
+
+8. Run tests
+
+```
+./vendor/bin/codecept run
+```
