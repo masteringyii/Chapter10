@@ -1,16 +1,12 @@
 {
-    "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Application Template",
-    "keywords": ["yii2", "framework", "basic", "application template"],
-    "homepage": "http://www.yiiframework.com/",
+    "name": "masteringyii/chapter10_2",
+    "description": "Chapter 10-2 Source Code",
+    "keywords": ["yii2", "framework", "mastteringyii", "packt"],
+    "homepage": "http://www.masteringyii.com/",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
-        "forum": "http://www.yiiframework.com/forum/",
-        "wiki": "http://www.yiiframework.com/wiki/",
-        "irc": "irc://irc.freenode.net/yii",
-        "source": "https://github.com/yiisoft/yii2"
+        "source": "https://github.com/masteringyii/chapter10_2"
     },
     "minimum-stability": "stable",
     "repositories": [
@@ -28,6 +24,8 @@
         "masteringyii/chapter5-mymodule": "dev-master"
     },
     "require-dev": {
+        "codeception/codeception": "^2.1",
+        "codeception/specify": "^0.4.1",
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-faker": "*",

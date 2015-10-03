@@ -30,3 +30,5 @@ phpunit.phar
 
 /assets/*
 /modules/*
+
+tests/_output/*
