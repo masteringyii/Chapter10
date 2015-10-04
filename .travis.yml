@@ -23,4 +23,5 @@ before_script:
   - ./yii migrate/up --interactive=0
   
 script: 
-  - ./vendor/bin/codecept run
+  - ./vendor/bin/codecept run functional
+  - ./vendor/bin/codecept run acceptance
