@@ -39,6 +39,10 @@ class m150523_203944_relational extends Migration
             'updated_at'   => Schema::TYPE_INTEGER,
 			'FOREIGN KEY(author_id) REFERENCES user(id)'
 		]);
+		
+		$this->batchInsert('role', ['id', 'name'], [
+			[1, 'User'], [2, 'Admin']
+		]);
     }
     
     public function safeDown()
