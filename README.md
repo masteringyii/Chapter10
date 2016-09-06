@@ -1,4 +1,4 @@
-## Mastering Yii Chapter 6 Source Code
+## Mastering Yii Chapter 10 Source Code
 
 [![Build Status](https://travis-ci.org/masteringyii/chapter10_2.svg?branch=master)](https://travis-ci.org/masteringyii/chapter10_2)
 
